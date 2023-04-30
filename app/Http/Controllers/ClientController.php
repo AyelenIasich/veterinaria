@@ -19,7 +19,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::paginate();
+        $clients = Client::paginate(1);
 
         return view('client.index', compact('clients'))
             ->with('i', (request()->input('page', 1) - 1) * $clients->perPage());
@@ -54,18 +54,11 @@ class ClientController extends Controller
         } else {
             $request->merge(['estado' => 1]);
         }
-        // $client = request()->all();
 
-        // $client = ([
-        //     'nombre' => $request->nombre,
-        //     'apellido' => $request->apellido,
-        //     'city_id' => $request->city_id,
-        //     'direccion' => $request->direccion,
-        //     'telefono' => $request->telefono,
-        //     'fecha_alta' => $request->fecha_alta,
-        //     'estado' => $request->estado
-        // ]);
+
+
         $client = new Client([
+            'dni' => $request->dni,
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
             'city_id' => $request->city_id,
@@ -126,7 +119,8 @@ class ClientController extends Controller
         } else {
             $request->merge(['estado' => 1]);
         }
-        $client = new Client([
+        $client->update([
+            'dni' => $request->dni,
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
             'city_id' => $request->city_id,
@@ -136,7 +130,7 @@ class ClientController extends Controller
             'estado' => $request->estado,
 
         ]);
-        $client->save();
+        // $client->save();
 
 
 

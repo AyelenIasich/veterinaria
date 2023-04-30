@@ -6,25 +6,24 @@
 
 @section('content')
     <section class="content container-fluid">
-        <div class="">
-            <div class="col-md-12">
+        <div class="row">
+            <div class="col col-md-7 col-lg-5 col-xl-4 col-xxl-3 mx-auto form p-4 mb-5">
 
                 @includeif('partials.errors')
 
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Client</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('clients.update', $client->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
+                <h2 class="card-title">{{ __('Editar') }} Cliente</h2>
 
-                            @include('client.form')
+                <div class="card-body">
+                    <form method="POST" action="{{ route('clients.update', $client->id) }}" role="form"
+                        enctype="multipart/form-data">
+                        {{ method_field('PATCH') }}
+                        @csrf
 
-                        </form>
-                    </div>
+                        @include('client.form')
+
+                    </form>
                 </div>
+
             </div>
         </div>
     </section>

@@ -1,0 +1,104 @@
+/* =============== General Settings =========== */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,300;0,400;0,900;1,300;1,700&display=swap");
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --border: 0.5px solid #a9afc3;
+    /* Scroll bar colors */
+
+    --scroll-bar-color: #c5cadf;
+    --scroll-thumb-color: #70768a;
+    --scroll-thumb-hover-color: #454f6b;
+
+    /* Inputs */
+    --bg-input: rgba(70, 69, 69, 0.1);
+    --bg-form-input: rgba(255, 255, 255, 0.9);
+    --font-form-input: #3c3b3b;
+}
+
+/* ============= Scroll Bar ================ */
+
+::-webkit-scrollbar {
+    width: 10px;
+    background: var(--scroll-bar-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scroll-thumb-color);
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scroll-thumb-hover-color);
+}
+
+/* ================================= Form ================================== */
+
+.form {
+    background: var(--bg-card-form-base) !important;
+    border-radius: 10px;
+    color: var(--font-form-input) !important;
+    box-shadow: 0 5px 10px -5px rgba(0 0 0 / 30%);
+}
+
+/* ============= Form Inputs ================ */
+
+.form input,
+.form textarea {
+    color: #3c3b3b;
+    cursor: pointer;
+    border: var(--border);
+    outline: none;
+    /* background: var(--bg-form-input); */
+}
+
+.form-select {
+    /* background: var(--bg-form-input) !important;
+  */
+    color: #3c3b3b !important;
+    border: var(--border);
+}
+.form label {
+    cursor: pointer;
+}
+.error {
+    color: #cb3234 !important;
+    font-weight: 500 !important;
+}
+
+.requerido label:after {
+    content: "*";
+    color: #cb3234 !important;
+}
+
+/* ============= Boton Guardar ================ */
+
+.btn-guardar {
+    border: none !important;
+    color: white !important;
+    font-weight: 500;
+    width: 100%;
+    box-shadow: inset 0 0 0 0 rgba(62, 141, 166, 1) !important;
+    transition: ease-out 0.5s;
+    background: rgb(143, 177, 186);
+    background: linear-gradient(
+        93deg,
+        rgba(143, 177, 186, 1) 0%,
+        rgba(110, 174, 174, 1) 45%,
+        rgba(62, 141, 166, 1) 100%
+    );
+}
+
+.btn-guardar:hover {
+    border: none;
+    box-shadow: inset 500px 0 0 0 rgba(62, 141, 166, 1) !important;
+}
+
+textarea {
+    width: 100% !important;
+    border-radius: 5px;
+}

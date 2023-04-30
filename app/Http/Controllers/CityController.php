@@ -18,7 +18,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::paginate();
+        $cities = City::paginate(1);
 
         return view('city.index', compact('cities'))
             ->with('i', (request()->input('page', 1) - 1) * $cities->perPage());
@@ -49,19 +49,6 @@ class CityController extends Controller
 
         return redirect()->route('cities.index')
             ->with('success', 'City created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $city = City::find($id);
-
-        return view('city.show', compact('city'));
     }
 
     /**

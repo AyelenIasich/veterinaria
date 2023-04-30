@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('pets', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
-            $table->integer('dni')->unique();
+            $table->bigInteger('client_id')->unsigned();
+            $table->integer('chip')->unique();
             $table->string('nombre');
-            $table->string('apellido');
-            $table->bigInteger('city_id')->unsigned()->nullable();
-            $table->string('direccion')->nullable();
-            $table->string('telefono');
-            $table->date('fecha_alta')->nullable();
+            $table->bigInteger('pet_category_id')->unsigned()->nullable();
+            $table->date('fecha_nacimiento')->nullable();
             $table->string('estado');
             $table->timestamps();
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('pet_category_id')->references('id')->on('pet_categories')->onDelete('cascade');
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('pets');
     }
 };

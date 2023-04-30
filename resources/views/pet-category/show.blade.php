@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $city->name ?? "{{ __('Show') City" }}
+    {{ $petCategory->name ?? "{{ __('Show') Pet Category" }}
 @endsection
 
 @section('content')
@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} City</span>
+                            <span class="card-title">{{ __('Show') }} Pet Category</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('cities.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('pet-categories.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
@@ -22,11 +22,7 @@
                         
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $city->nombre }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Codigo Postal:</strong>
-                            {{ $city->codigo_postal }}
+                            {{ $petCategory->nombre }}
                         </div>
 
                     </div>

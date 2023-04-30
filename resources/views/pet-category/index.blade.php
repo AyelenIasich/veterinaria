@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
 @section('template_title')
-    City
+    Pet Category
 @endsection
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12 col-md-8 col-xl-6 col-xxl-4 mx-auto">
+            <div class="col-sm-9 col-md-7 col-xl-5 col-xxl-4 mx-auto">
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Ciudades') }}
+                                {{ __('Categorias de Mascotas') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('cities.create') }}" class="btn btn-primary btn-sm float-right"
+                                <a href="{{ route('pet-categories.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left"><i class="fa-solid fa-plus"></i>
                                     {{ __('Nuevo') }}
                                 </a>
@@ -38,23 +38,23 @@
                                         <th>No</th>
 
                                         <th>Nombre</th>
-                                        <th>Codigo Postal</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($cities as $city)
+                                    @foreach ($petCategories as $petCategory)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-                                            <td>{{ $city->nombre }}</td>
-                                            <td>{{ $city->codigo_postal }}</td>
+                                            <td>{{ $petCategory->nombre }}</td>
 
                                             <td>
-                                                <form action="{{ route('cities.destroy', $city->id) }}" method="POST">
+                                                <form action="{{ route('pet-categories.destroy', $petCategory->id) }}"
+                                                    method="POST">
+
                                                     <a class="btn btn-sm btn-success"
-                                                        href="{{ route('cities.edit', $city->id) }}"><i
+                                                        href="{{ route('pet-categories.edit', $petCategory->id) }}"><i
                                                             class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
@@ -69,14 +69,12 @@
                         </div>
                     </div>
                 </div>
-
+                <nav aria-label="Page navigation " class="mt-3">
+                    <ul class="pagination d-flex justify-content-end">
+                        {!! $petCategories->links() !!}
+                    </ul>
+                </nav>
             </div>
         </div>
-        <nav aria-label="Page navigation " class="mt-3">
-            <ul class="pagination d-flex justify-content-end">
-                {!! $cities->links() !!}
-
-            </ul>
-        </nav>
     </div>
 @endsection

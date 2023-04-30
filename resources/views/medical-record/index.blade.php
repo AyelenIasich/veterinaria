@@ -1,25 +1,25 @@
 @extends('layouts.app')
 
 @section('template_title')
-    City
+    Medical Record
 @endsection
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12 col-md-8 col-xl-6 col-xxl-4 mx-auto">
+            <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-9 mx-auto">
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                            <span id="card_title">
-                                {{ __('Ciudades') }}
-                            </span>
+                            <h2 id="card_title">
+                                {{ __('Listado de historias clínicas') }}
+                            </h2>
 
                             <div class="float-right">
-                                <a href="{{ route('cities.create') }}" class="btn btn-primary btn-sm float-right"
+                                <a href="{{ route('medical-records.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left"><i class="fa-solid fa-plus"></i>
-                                    {{ __('Nuevo') }}
+                                    {{ __('Nueva historia') }}
                                 </a>
                             </div>
                         </div>
@@ -37,29 +37,35 @@
                                     <tr>
                                         <th>No</th>
 
-                                        <th>Nombre</th>
-                                        <th>Codigo Postal</th>
+                                        <th>Mascota</th>
+                                        <th>Fecha Consulta</th>
+                                        <th>Observaciones</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($cities as $city)
+                                    @foreach ($medicalRecords as $medicalRecord)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-                                            <td>{{ $city->nombre }}</td>
-                                            <td>{{ $city->codigo_postal }}</td>
+                                            <td>{{ $medicalRecord->mascota_id }}</td>
+                                            <td>{{ $medicalRecord->fecha_consulta }}</td>
+                                            <td>{{ $medicalRecord->observaciones }}</td>
 
                                             <td>
-                                                <form action="{{ route('cities.destroy', $city->id) }}" method="POST">
+                                                <form action="{{ route('medical-records.destroy', $medicalRecord->id) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('medical-records.show', $medicalRecord->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success"
-                                                        href="{{ route('cities.edit', $city->id) }}"><i
-                                                            class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                        href="{{ route('medical-records.edit', $medicalRecord->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i
-                                                            class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -69,14 +75,12 @@
                         </div>
                     </div>
                 </div>
-
+                <nav aria-label="Page navigation " class="mt-3">
+                    <ul class="pagination d-flex justify-content-end">
+                        {!! $medicalRecords->links() !!}
+                    </ul>
+                </nav>
             </div>
         </div>
-        <nav aria-label="Page navigation " class="mt-3">
-            <ul class="pagination d-flex justify-content-end">
-                {!! $cities->links() !!}
-
-            </ul>
-        </nav>
     </div>
 @endsection

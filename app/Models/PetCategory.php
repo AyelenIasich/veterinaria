@@ -5,24 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class City
+ * Class PetCategory
  *
  * @property $id
  * @property $nombre
- * @property $codigo_postal
  * @property $created_at
  * @property $updated_at
  *
- * @property Client[] $clients
+ * @property Pet[] $pets
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class City extends Model
+class PetCategory extends Model
 {
 
     static $rules = [
         'nombre' => 'required',
-        'codigo_postal' => 'required',
     ];
 
     protected $perPage = 20;
@@ -32,14 +30,14 @@ class City extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre', 'codigo_postal'];
+    protected $fillable = ['nombre'];
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function clients()
+    public function pets()
     {
-        return $this->hasMany('App\Models\Client', 'city_id', 'id');
+        return $this->hasMany('App\Models\Pet', 'pet_category_id', 'id');
     }
 }

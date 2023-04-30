@@ -7,6 +7,14 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- Fontawesone Icons --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    {{-- Bootstrap css --}}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+    {{-- Personal link css --}}
+    <link rel="stylesheet" href="{{ asset('/css/index.css') }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -35,10 +43,21 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('clients.index') }}">{{ __('clientes') }}</a>
+                            <a class="nav-link" href="{{ route('clients.index') }}">{{ __('Clientes') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cities.index') }}">{{ __('ciudades') }}</a>
+                            <a class="nav-link" href="{{ route('cities.index') }}">{{ __('Ciudades') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pets.index') }}">{{ __('Mascotas') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="{{ route('medical-records.index') }}">{{ __('Historia Clinica') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="{{ route('pet-categories.index') }}">{{ __('Categorias de Mascotas') }}</a>
                         </li>
                     </ul>
 
@@ -86,6 +105,11 @@
             @yield('content')
         </main>
     </div>
+
+    {{-- Bootstrap
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script> --}}
 </body>
 
 </html>

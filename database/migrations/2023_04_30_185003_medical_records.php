@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
+
+        Schema::create('medical_records', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->integer('codigo_postal')->unique();
+            $table->bigInteger('mascota_id')->unsigned();
+            $table->date('fecha_consulta');
+            $table->longText('observaciones');
             $table->timestamps();
+            $table->foreign('mascota_id')->references('id')->on('pets')->onDelete('cascade');
         });
     }
 
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('medical_records');
     }
 };

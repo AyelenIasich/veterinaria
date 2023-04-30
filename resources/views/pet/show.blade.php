@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $client->name ?? "{{ __('Show') Client" }}
+    {{ $pet->name ?? "{{ __('Show') Pet" }}
 @endsection
 
 @section('content')
@@ -11,42 +11,38 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Client</span>
+                            <span class="card-title">{{ __('Show') }} Pet</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('clients.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('pets.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
-
+                        
+                        <div class="form-group">
+                            <strong>Client Id:</strong>
+                            {{ $pet->client_id }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Chip:</strong>
+                            {{ $pet->chip }}
+                        </div>
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $client->nombre }}
+                            {{ $pet->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Apellido:</strong>
-                            {{ $client->apellido }}
+                            <strong>Pet Category Id:</strong>
+                            {{ $pet->pet_category_id }}
                         </div>
                         <div class="form-group">
-                            <strong>City Id:</strong>
-                            {{ $client->city->nombre }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Direccion:</strong>
-                            {{ $client->direccion }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Telefono:</strong>
-                            {{ $client->telefono }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Fecha Alta:</strong>
-                            {{ $client->fecha_alta }}
+                            <strong>Fecha Nacimiento:</strong>
+                            {{ $pet->fecha_nacimiento }}
                         </div>
                         <div class="form-group">
                             <strong>Estado:</strong>
-                            {{ $client->estado }}
+                            {{ $pet->estado }}
                         </div>
 
                     </div>

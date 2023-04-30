@@ -28,9 +28,11 @@ class Client extends Model
         'estado' => 'boolean',
     ];
     static $rules = [
+        'dni' => 'required',
         'nombre' => 'required',
         'apellido' => 'required',
-        'telefono' => 'required',
+        // 'telefono' => 'required',
+        'telefono' => 'required|min:8|max:11|regex:/^([0-9\s\-\+\(\)]*)$/',
 
     ];
 
@@ -41,7 +43,7 @@ class Client extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre', 'apellido', 'city_id', 'direccion', 'telefono', 'fecha_alta', 'estado'];
+    protected $fillable = ['dni', 'nombre', 'apellido', 'city_id', 'direccion', 'telefono', 'fecha_alta', 'estado'];
 
 
     /**
@@ -49,6 +51,6 @@ class Client extends Model
      */
     public function city()
     {
-        return $this->hasOne('App\City', 'id', 'city_id');
+        return $this->hasOne('App\Models\City', 'id', 'city_id');
     }
 }

@@ -1,25 +1,25 @@
 @extends('layouts.app')
 
 @section('template_title')
-    City
+    Pet
 @endsection
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12 col-md-8 col-xl-6 col-xxl-4 mx-auto">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Ciudades') }}
+                                {{ __('Listado de Mascotas') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('cities.create') }}" class="btn btn-primary btn-sm float-right"
-                                    data-placement="left"><i class="fa-solid fa-plus"></i>
-                                    {{ __('Nuevo') }}
+                                <a href="{{ route('pets.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    <i class="fa-solid fa-plus"></i> {{ __('Nueva Mascota') }}
                                 </a>
                             </div>
                         </div>
@@ -36,30 +36,39 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
+                                        <th>Chip</th>
+                                        <th>Propietario</th>
                                         <th>Nombre</th>
-                                        <th>Codigo Postal</th>
+                                        <th>Tipo</th>
+                                        <th>Fecha Nacimiento</th>
+                                        <th>Estado</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($cities as $city)
+                                    @foreach ($pets as $pet)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
-                                            <td>{{ $city->nombre }}</td>
-                                            <td>{{ $city->codigo_postal }}</td>
+                                            <td>{{ $pet->chip }}</td>
+                                            <td>{{ $pet->client->nombre }}</td>
+                                            <td>{{ $pet->nombre }}</td>
+                                            <td>{{ $pet->petCategory->nombre }}</td>
+                                            <td>{{ $pet->fecha_nacimiento }}</td>
+                                            <td>{{ $pet->estado }}</td>
 
                                             <td>
-                                                <form action="{{ route('cities.destroy', $city->id) }}" method="POST">
+                                                <form action="{{ route('pets.destroy', $pet->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('pets.show', $pet->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success"
-                                                        href="{{ route('cities.edit', $city->id) }}"><i
-                                                            class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                        href="{{ route('pets.edit', $pet->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i
-                                                            class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -69,14 +78,8 @@
                         </div>
                     </div>
                 </div>
-
+                {!! $pets->links() !!}
             </div>
         </div>
-        <nav aria-label="Page navigation " class="mt-3">
-            <ul class="pagination d-flex justify-content-end">
-                {!! $cities->links() !!}
-
-            </ul>
-        </nav>
     </div>
 @endsection

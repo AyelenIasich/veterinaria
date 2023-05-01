@@ -20,11 +20,11 @@ use App\Http\Controllers\MedicalRecordController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Auth::routes();
 
+Auth::routes();
 
 // Privadas Autenticacion
 Route::resource('clients', ClientController::class)->names('clients');
